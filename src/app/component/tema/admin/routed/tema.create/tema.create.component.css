@@ -1,0 +1,75 @@
+.create {
+    width: 60%;
+    padding: 20px;
+    margin: 0 auto;
+
+    h2 {
+        text-align: center;
+    }
+
+    form {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    mat-form-field {
+        width: 100%;
+    }
+
+    mat-form-field textarea {
+        height: 30px;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    /* Botón Listar */
+    .plist-button {
+        background-color: #4C6B8C;
+        color: white;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .plist-button:hover {
+        background-color: #6d98c2;
+        transform: scale(1.05);
+        transition: transform 0.1s ease;
+    }
+
+
+    /* Botón Reset */
+    .reset-button {
+        background-color: #576870;
+        color: black;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .reset-button:hover {
+        background-color: #828a8d;
+        transform: scale(1.05);
+        transition: transform 0.1s ease;
+    }
+
+    /* Botón Save (Guardar) */
+    .save-button {
+        background-color: #1a58c4;
+        color: white;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .save-button:hover {
+        background-color: #1a57c0;
+        transform: scale(1.05);
+        transition: transform 0.2s ease;
+    }
+
+
+}

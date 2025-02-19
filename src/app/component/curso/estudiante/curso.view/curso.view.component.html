@@ -1,0 +1,43 @@
+<div class="view">
+  <h2>Ver Curso <mat-icon>feature_search</mat-icon></h2>
+  
+    <mat-card class="custom-card-bar" appearance="outlined">
+      <div class="card-header-bar">
+        <h3>{{oCurso.nombre}}</h3>
+      </div>
+  
+      <mat-card-content>
+
+        <p><strong>Descripción:</strong> {{ oCurso.descripcion }}</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Titulo</th>
+              <th>Descripcion</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (tema of oTemas.content; track tema.id) {
+            <tr>
+              <td>{{ tema.titulo}}</td>
+              <td>{{ tema.descripcion }}</td>
+            </tr>
+            } @empty {
+            <tr>
+              <td colspan="6">No hay temas</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+
+      </mat-card-content>
+    </mat-card>
+  
+    <div class="buttons">
+      <button mat-fab extended class="plist-button" (click)="plist()">
+        <mat-icon>format_list_numbered</mat-icon>Ir a listado de cursos
+      </button>
+    </div>
+  </div>

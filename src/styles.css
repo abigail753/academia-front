@@ -1,0 +1,76 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+    --blue-color: #002541;
+    --white-color: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--white-color);
+    margin: auto;
+}
+
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/*Personalizar primeNG*/
+
+.p-fileupload-advanced {
+    background-color: #ffffff !important;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.p-fileupload .p-button {
+    background-color: #1e3a50;
+    border: none;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease;
+    padding: 10px;
+}
+
+.p-button-label {
+    color: white;
+}
+
+.p-fileupload .p-button:hover {
+    background-color: #0056b3;
+}
+
+.p-fileupload-file-actions .p-button {
+    background-color: white;
+}
+
+.p-fileupload-files {
+    margin-top: 1rem;
+}
+
+.p-fileupload-files .p-fileupload-filename {
+    font-size: 0.9rem;
+}
+
+.p-fileupload-file-name {
+    color: #002541
+}
+
+.p-fileupload-file-size {
+    color: #495057
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

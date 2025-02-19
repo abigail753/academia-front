@@ -1,0 +1,99 @@
+<div class="create">
+  <h2>Crear un nuevo examen <mat-icon>add_circle</mat-icon></h2>
+
+  <!-- Formulario -->
+  <form [formGroup]="oExamenForm!" (ngSubmit)="onSubmit()" novalidate>
+
+    <!-- Campo - Nombre -->
+    <mat-form-field>
+      <mat-label>Nombre del Examen</mat-label>
+      <mat-icon matPrefix>assignment</mat-icon>
+      <input matInput formControlName="nombre" placeholder="Pon aquí el nombre del examen" />
+
+      <mat-hint align="start">De 2 caracteres a 50 caracteres</mat-hint>
+      @if (oExamenForm?.get('nombre')?.hasError('required')){
+      <mat-error>Debes introducir el nombre del examen</mat-error>
+      } @if (oExamenForm?.get('nombre')?.hasError('minlength')){
+      <mat-error> El nombre debe ser mas largo </mat-error>
+      } @if (oExamenForm?.get('nombre')?.hasError('maxlength')){
+      <mat-error> El nombre debe ser mas corto </mat-error>
+      }
+    </mat-form-field>
+
+    <!-- Campo - Nº Preguntas -->
+    <mat-form-field>
+      <mat-label>Nº de preguntas</mat-label>
+      <mat-icon matPrefix>format_list_numbered</mat-icon>
+      <input matInput formControlName="num_preguntas" placeholder="Escribe el numero de preguntas" />
+
+      <mat-hint align="start">Un número de preguntas entre 5 y 20.</mat-hint>
+      @if (oExamenForm?.get('num_preguntas')?.hasError('required')) {
+      <mat-error>Debes introducir el número de preguntas.</mat-error>
+      } @if (oExamenForm?.get('num_preguntas')?.hasError('min')) {
+      <mat-error>Debes introducir un número mayor o igual a 5.</mat-error>
+      } @if (oExamenForm?.get('num_preguntas')?.hasError('max')) {
+      <mat-error>Debes introducir un número menor o igual a 20.</mat-error>
+      } @if (oExamenForm?.get('num_preguntas')?.hasError('pattern')) {
+      <mat-error>Debes introducir solo números.</mat-error>
+      }
+    </mat-form-field>
+
+    <div class="buttons">
+      <button mat-fab extended class="plist-button" [routerLink]="['/profesor', 'examen', 'plist']">
+        <mat-icon>format_list_numbered</mat-icon>Ir a listado de examens
+      </button>
+
+      <button mat-fab extended class="reset-button" (click)="onReset()">
+        <mat-icon>refresh</mat-icon>Limpiar campos
+      </button>
+
+      <button mat-fab extended class="save-button" type="submit" [disabled]="!oExamenForm?.valid">
+        <mat-icon>save</mat-icon>Guardar
+      </button>
+    </div>
+  </form>
+
+  <form [formGroup]="oTemaForm!">
+    <!-- Campo - ID de Tema -->
+    <mat-form-field>
+      <mat-label>Nombre del Tema</mat-label>
+      <mat-icon matPrefix>format_list_numbered</mat-icon>
+
+      <!-- Aquí se usa el control de formulario para el campo ID -->
+       @if (temasSeleccionados !== undefined) {
+        <input matInput formControlName="coleccion" [value]="coleccion" placeholder="ID de tema" id="tema" />
+
+       } @else {
+        <input matInput placeholder="ID de tema" id="tema" />
+       }
+
+      <button mat-icon-button matSuffix (click)="openDialogTema()">
+        <mat-icon>manage_search</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+
+  <!-- Modal -->
+  <div class="modal fade" [id]="'mimodal'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Contante</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            (click)="hideModal()"></button>
+        </div>
+        <div class="modal-body">
+          <p>{{ strMessage }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="hideModal()">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+

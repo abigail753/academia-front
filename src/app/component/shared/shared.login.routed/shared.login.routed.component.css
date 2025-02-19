@@ -1,0 +1,38 @@
+/* Agregar fondo a app-login */
+:host {
+    display: block;
+    background-image: url('../../../../../public/img/fondo-login.svg');
+    background-size: cover;
+    background-position: center;
+    height: 85vh;
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    background-color: #ffffff80;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    width: 30%;
+
+    h2,h3 {
+        text-align: center;
+        color: #000000;
+    }
+
+
+    form {
+        padding: 20px 0;
+        display: flex;
+        flex-direction: column;
+        gap:30px;
+        
+        .login-button {
+            background-color: #002541;
+            color: white;
+        }
+    }
+
+}

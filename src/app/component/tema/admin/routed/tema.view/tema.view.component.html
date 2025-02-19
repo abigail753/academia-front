@@ -1,0 +1,29 @@
+<div class="view">
+  <h2>Ver Tema <mat-icon>feature_search</mat-icon></h2>
+
+  <mat-card class="example-card custom-card-bar" appearance="outlined">
+    <div class="card-header-bar">
+      <h3>ID del Tema: {{ oTema.id }}</h3>
+    </div>
+
+    <mat-card-content>
+      <p><strong>Titulo del Examen:</strong>  {{ oTema.titulo }}</p>
+      <p><strong>Descripción:</strong> {{ oTema.descripcion }}</p>
+      <p><strong>ID de Curso:</strong> {{ oTema.curso.nombre }}</p>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="buttons">
+    <button mat-fab extended class="plist-button" (click)="plist()">
+      <mat-icon>format_list_numbered</mat-icon>Ir a listado de temas
+    </button>
+
+    <button mat-fab extended class="edit-button" (click)="edit(oTema)">
+      <mat-icon>edit</mat-icon>Editar
+    </button>
+
+    <button mat-fab extended class="delete-button" (click)="delete(oTema)">
+      <mat-icon>delete</mat-icon>Borrar
+    </button>
+  </div>
+</div>

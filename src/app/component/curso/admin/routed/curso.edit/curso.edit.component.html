@@ -1,0 +1,84 @@
+<div class="edit">
+
+  <h2>Editar Curso <mat-icon>border_color</mat-icon></h2>
+
+  <!-- Formulario -->
+  <form [formGroup]="oCursoForm!" (ngSubmit)="onSubmit()" novalidate>
+
+    <!-- Campo - ID -->
+    <mat-form-field>
+      <mat-label>Id</mat-label>
+      <input matInput formControlName="id" placeholder="Id" readonly />
+      <mat-hint align="end">No se puede cambiar</mat-hint>
+    </mat-form-field>
+
+    <!-- Campo - Nombre -->
+    <mat-form-field>
+      <mat-label>Apellidos</mat-label>
+      <mat-icon matPrefix>group</mat-icon>
+      <input matInput formControlName="nombre" placeholder="Nombre del curso" />
+      
+
+      <mat-hint align="start">De 3 caracteres a 50 caracteres</mat-hint>
+      @if (oCursoForm?.get('nombre')?.hasError('required')) {
+      <mat-error>Debes introducir el nombre del curso</mat-error>
+      } @if (oCursoForm?.get('nombre')?.hasError('minlength')) {
+      <mat-error>Debes introducir un nombre del curso más largo</mat-error>
+      } @if (oCursoForm?.get('nombre')?.hasError('maxlength')) {
+      <mat-error>Debes introducir un nombre del curso más corto</mat-error>
+      }
+    </mat-form-field>
+
+
+    <!-- Campo - Descripcion -->
+    <mat-form-field>
+      <mat-label>Descripción</mat-label>
+      <mat-icon matPrefix>mail</mat-icon>
+      <textarea matInput formControlName="descripcion" placeholder="Escribe una breve descripción" required></textarea>
+
+      <mat-hint align="start">Escribe una breve descripción (máx. 255 caracteres)</mat-hint>
+      @if (oCursoForm?.get('descripcion')?.hasError('required')) {
+      <mat-error>Debes introducir una breve descripción</mat-error>
+      } @if (oCursoForm?.get('descripcion')?.hasError('minlength')) {
+      <mat-error>Debes introducir una descripcion más larga</mat-error>
+      } @if (oCursoForm?.get('descripcion')?.hasError('maxlength')) {
+      <mat-error>Debes introducir una descripcion más corta</mat-error>
+      }
+    </mat-form-field>
+    
+    <div class="buttons">
+      <button mat-fab extended class="plist-button" [routerLink]="['/admin', 'curso', 'plist']">
+        <mat-icon>format_list_numbered</mat-icon>Ir a listado de cursos
+      </button>
+
+      <button mat-fab extended class="reset-button" (click)="onReset()">
+        <mat-icon>refresh</mat-icon>Descartar cambios
+      </button>
+
+      <button mat-fab extended class="save-button" type="submit" [disabled]="!oCursoForm?.valid">
+        <mat-icon>save</mat-icon>Guardar
+      </button>
+
+    </div>
+  </form>
+
+  <div class="modal fade" [id]="'mimodal'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Contante</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            (click)="hideModal()"></button>
+        </div>
+        <div class="modal-body">
+          <p>{{ message }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="hideModal()">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

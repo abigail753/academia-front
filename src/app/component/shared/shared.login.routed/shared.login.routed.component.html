@@ -1,0 +1,43 @@
+<div class="container">
+  <div>
+    <h2>Login</h2>
+    <h3>Introduce tus credenciales</h3>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Campo - Correo -->
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="correo" placeholder="Pon aquí tu email" required />
+        <mat-icon matPrefix>mail</mat-icon>
+  
+        <mat-hint align="start">Formato email</mat-hint>
+        @if (loginForm.get('correo')?.hasError('required')) {
+        <mat-error>Debes introducir un email</mat-error>
+        } @if (loginForm.get('correo')?.hasError('email')) {
+        <mat-error>Debes introducir un email correcto</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Campo - Password --> 
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" placeholder="Password" required />
+        <mat-icon matPrefix>lock</mat-icon>
+
+        <mat-hint align="start">Formato contraseña</mat-hint>
+        @if (loginForm.get('password')?.hasError('required')) {
+        <mat-error>Debes introducir una contraseña </mat-error>
+        } @if (loginForm.get('password')?.hasError('minlength')) {
+        <mat-error>Debes introducir una contraseña más larga</mat-error>
+        } @if (loginForm.get('password')?.hasError('maxlength')) {
+        <mat-error>Debes introducir una contraseña más corta</mat-error>
+        }
+      </mat-form-field>
+
+      <button mat-fab extended class="login-button">
+        <mat-icon>login</mat-icon>Acceder
+      </button>
+    </form>
+
+  </div>
+</div>

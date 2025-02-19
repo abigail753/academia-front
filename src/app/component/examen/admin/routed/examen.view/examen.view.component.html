@@ -1,0 +1,28 @@
+<div class="view">
+  <h2>Ver Examen <mat-icon>feature_search</mat-icon></h2>
+
+  <mat-card class="example-card custom-card-bar" appearance="outlined">
+    <div class="card-header-bar">
+      <h3>ID del Examen: {{ oExamen.id }}</h3>
+    </div>
+
+    <mat-card-content>
+      <p><strong>Nombre del Examen:</strong> {{ oExamen.nombre }}</p>
+      <p><strong>Nº de preguntas:</strong> {{ oExamen.num_preguntas }}</p>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="buttons">
+    <button mat-fab extended class="plist-button" (click)="plist()">
+      <mat-icon>format_list_numbered</mat-icon>Ir a listado de examenes
+    </button>
+
+    <button mat-fab extended class="edit-button" (click)="edit(oExamen)">
+      <mat-icon>edit</mat-icon>Editar
+    </button>
+
+    <button mat-fab extended class="delete-button" (click)="delete(oExamen)">
+      <mat-icon>delete</mat-icon>Borrar
+    </button>
+  </div>
+</div>

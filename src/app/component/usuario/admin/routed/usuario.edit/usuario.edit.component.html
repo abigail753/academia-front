@@ -1,0 +1,156 @@
+<div class="edit">
+
+  <h2>Editar Usuario <mat-icon>border_color</mat-icon></h2>
+
+  <!-- Formulario -->
+  <form [formGroup]="oUsuarioForm!" (ngSubmit)="onSubmit()" novalidate>
+
+    <!-- Campo - Foto -->
+    @if ( oUsuario?.foto != null ){
+    <img mat-card-md-image src="{{ oUsuarioForm?.get('foto')?.value }}">
+    } @else {
+    <img mat-card-md-image
+      src="img/SinFoto.png">
+    }
+
+    <!-- Campo - ID -->
+    <mat-form-field>
+      <mat-label>Id</mat-label>
+      <input matInput formControlName="id" placeholder="Id" readonly />
+      <mat-hint align="end">No se puede cambiar</mat-hint>
+    </mat-form-field>
+
+    <!-- Campo - Nombre -->
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <mat-icon matPrefix>person</mat-icon>
+      <input matInput formControlName="nombre" placeholder="Nombre" />
+
+      <mat-hint align="end">De 3 a 50 caracteres</mat-hint>
+      @if (oUsuarioForm?.get('nombre')?.hasError('required')) {
+      <mat-error>Debes introducir un nombre</mat-error>
+      } @if (oUsuarioForm?.get('nombre')?.hasError('minlength')) {
+      <mat-error>Debes introducir un nombre más largo</mat-error>
+      } @if (oUsuarioForm?.get('nombre')?.hasError('maxlength')) {
+      <mat-error>Debes introducir un nombre más corto</mat-error>
+      }
+    </mat-form-field>
+
+    <!-- Campo - Apellidos -->
+    <mat-form-field>
+      <mat-label>Apellidos</mat-label>
+      <input matInput formControlName="apellidos" placeholder="Apellidos" />
+      <mat-icon matPrefix>group</mat-icon>
+
+      <mat-hint align="end">De 3 a 50 caracteres</mat-hint>
+      @if (oUsuarioForm?.get('apellidos')?.hasError('required')) {
+      <mat-error>Debes introducir un primer apellido</mat-error>
+      } @if (oUsuarioForm?.get('apellidos')?.hasError('minlength')) {
+      <mat-error>Debes introducir un apellido más largo</mat-error>
+      } @if (oUsuarioForm?.get('apellidos')?.hasError('maxlength')) {
+      <mat-error>Debes introducir un apellido más corto</mat-error>
+      }
+    </mat-form-field>
+
+    <!-- Campo - Correo -->
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="correo" placeholder="Pon aquí tu email" required />
+      <mat-icon matPrefix>mail</mat-icon>
+
+      <mat-hint align="start">Formato email</mat-hint>
+      @if (oUsuarioForm?.get('correo')?.hasError('required')) {
+      <mat-error>Debes introducir un email</mat-error>
+      } @if (oUsuarioForm?.get('correo')?.hasError('email')) {
+      <mat-error>Debes introducir un email correcto</mat-error>
+      }
+    </mat-form-field>
+
+     <!-- Campo - Tipo de Usuario -->
+     <mat-form-field>
+      <mat-label>Seleccionar el tipo de usuario</mat-label>
+      <mat-icon matPrefix>group</mat-icon>
+      <mat-select formControlName="tipousuario" >
+        <mat-option value="Administrador">Administrador</mat-option>
+        <mat-option value="Profesor">Profesor</mat-option>
+        <mat-option value="Estudiante">Estudiante</mat-option>
+      </mat-select>
+
+      @if (oUsuarioForm?.get('tipousuario')?.hasError('required')) {
+        <mat-error>Debes seleccionar el tipo de usuario</mat-error>
+        }
+    </mat-form-field>
+
+    <!-- Campo - Contraseña -->
+    <mat-form-field>
+      <mat-label>Contraseña</mat-label>
+      <mat-icon matPrefix>lock</mat-icon>
+      <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password"
+        placeholder="Introduce una contraseña" />
+
+      <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+        <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+      </button>
+
+      <mat-hint align="start">Mínimo 6 caracteres</mat-hint>
+
+      @if (oUsuarioForm?.get('password')?.hasError('required')) {
+      <mat-error>Debes introducir una contraseña</mat-error>
+      } @if (oUsuarioForm?.get('password')?.hasError('minlength')) {
+      <mat-error>La contraseña debe tener al menos 6 caracteres</mat-error>
+      } @if (oUsuarioForm?.get('password')?.hasError('maxlength')) {
+      <mat-error>La contraseña no debe superar los 20 caracteres</mat-error>
+      }
+
+    </mat-form-field>
+
+    <p-fileupload 
+      #fu 
+      mode="advanced" 
+      chooseLabel="Elegir nueva foto" 
+      emptyMessage="Ningún archivo seleccionado"
+      chooseIcon="pi pi-upload" 
+      accept="image/*" 
+      maxFileSize="1000000" 
+      (onSelect)="onFileSelect($event)"
+      (onRemove)="get()"
+      [showUploadButton]="false"
+      [showCancelButton]="false">
+    </p-fileupload>
+
+    <div class="buttons">
+      <button mat-fab extended class="plist-button" [routerLink]="['/admin', 'usuario', 'plist']">
+        <mat-icon>format_list_numbered</mat-icon>Ir a listado de usuarios
+      </button>
+
+      <button mat-fab extended class="reset-button" (click)="onReset()">
+        <mat-icon>refresh</mat-icon>Descartar cambios
+      </button>
+
+      <button mat-fab extended class="save-button" type="submit" [disabled]="!oUsuarioForm?.valid">
+        <mat-icon>save</mat-icon>Guardar
+      </button>
+
+    </div>
+  </form>
+
+  <div class="modal fade" [id]="'mimodal'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Contante</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            (click)="hideModal()"></button>
+        </div>
+        <div class="modal-body">
+          <p>{{ message }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="hideModal()">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

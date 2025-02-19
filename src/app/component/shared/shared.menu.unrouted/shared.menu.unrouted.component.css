@@ -1,0 +1,29 @@
+nav {
+    background-color: #002541;
+    padding: 20px;
+
+
+    ul {
+        width: 100%;
+        list-style-type: none;
+        display: flex;
+        gap:5%;
+        display: flex;
+        justify-content: center;
+
+        li {
+            padding: 3px 10px;
+            a {
+                text-decoration: none;
+                color: #ffffff;
+            }
+
+            &:hover {
+                transform: scale(1.14);
+                border-bottom: 4px solid #ffffff;
+            }
+
+        }
+
+    }
+}

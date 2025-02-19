@@ -1,0 +1,24 @@
+<div class="view">
+  <h2>Ver Curso <mat-icon>feature_search</mat-icon></h2>
+  
+    <mat-card class="example-card custom-card-bar" appearance="outlined">
+      <div class="card-header-bar">
+        <h3>{{ oCurso.nombre }}</h3>
+      </div>
+  
+      <mat-card-content>
+        <p><strong>Nombre de Curso:</strong> {{ oCurso.nombre }}</p>
+        <p><strong>Descripción:</strong> {{ oCurso.descripcion }}</p>
+      </mat-card-content>
+    </mat-card>
+  
+    <div class="buttons">
+      <button mat-fab extended class="plist-button" (click)="plist()">
+        <mat-icon>format_list_numbered</mat-icon>Ir a listado de cursos
+      </button>
+  
+      <button mat-fab extended class="edit-button" (click)="edit(oCurso)">
+        <mat-icon>edit</mat-icon>Editar
+      </button>
+    </div>
+  </div>

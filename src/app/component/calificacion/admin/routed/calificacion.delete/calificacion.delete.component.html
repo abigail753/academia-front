@@ -1,0 +1,47 @@
+<div class="delete">
+  <h2>Eliminar Calificacion <mat-icon>delete_forever</mat-icon></h2>
+
+  <mat-card class="example-card custom-card-bar" appearance="outlined">
+    <div class="card-header-bar">
+      <h3>ID del Calificacion: {{ oCalificacion?.id }}</h3>
+    </div>
+
+    <mat-card-content>
+      <p><strong>Calificacion:</strong> {{ oCalificacion?.calificacion }}</p>
+      <p><strong>Fecha de Evaluación:</strong> {{ oCalificacion?.fecha_evaluacion }}</p>
+      <p><strong>ID de Usuario:</strong> {{ oCalificacion!.usuario.id }}</p>
+      <p><strong>ID de Examen:</strong> {{ oCalificacion!.examen.id }}</p>
+      <p><strong>ID de Tema:</strong> {{ oCalificacion!.tema.id }}</p>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="buttons">
+    <button mat-fab extended class="plist-button" (click)="plist()">
+      <mat-icon>format_list_numbered</mat-icon>Ir a listado de calificacions
+    </button>
+
+    <button mat-fab extended class="delete-button" (click)="delete()">
+      <mat-icon>delete</mat-icon>Borrar
+    </button>
+  </div>
+
+  <div class="modal fade" [id]="'mimodal'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Contante</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            (click)="hideModal()"></button>
+        </div>
+        <div class="modal-body">
+          <p>{{ strMessage }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="hideModal()">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

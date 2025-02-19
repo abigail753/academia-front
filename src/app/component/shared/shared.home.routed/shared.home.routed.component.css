@@ -1,0 +1,12 @@
+:host {
+    background-color: #002541;
+    display: block; 
+    height: 90vh;
+}
+
+section {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

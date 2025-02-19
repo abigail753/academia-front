@@ -1,0 +1,116 @@
+<div class="plist">
+  <div class="title">
+    <h2>Lista de Cursos <mat-icon>school</mat-icon></h2>
+
+    <button class="create-button" mat-fab [class.mat-fab]="!hover" [class.mat-flat-button]="hover"
+      [class.extended]="hover" (mouseenter)="hover = true" (mouseleave)="hover = false" (click)="create()">
+      <mat-icon>add_circle</mat-icon>
+      <span *ngIf="hover">Crear nuevo curso</span>
+    </button>
+  </div>
+
+  <hr>
+  <div class="filters">
+    <h3>Filtrar</h3>
+    <!-- BUSCADOR -->
+    <mat-form-field appearance="fill">
+      <mat-label>Buscar</mat-label>
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput [(ngModel)]="strFiltro" (ngModelChange)="filter($event)" placeholder="Buscar">
+    </mat-form-field>
+  </div>
+  <hr>
+
+  <div class="pag">
+    <!-- FILTROS -->
+    <h5>
+      Mostrando {{ oPage?.numberOfElements | number : "1.0-0" }} de
+      {{ oPage?.totalElements | number : "1.0-0" }}
+    </h5>
+
+    <div>
+      <!-- BOTONERA x Numero de datos -->
+      <section>
+        <mat-button-toggle-group [value]="'10'">
+          <mat-button-toggle value="10" (click)="goToRpp(10)">10</mat-button-toggle>
+          <mat-button-toggle value="50" (click)="goToRpp(50)">50</mat-button-toggle>
+          <mat-button-toggle value="100" (click)="goToRpp(100)">100</mat-button-toggle>
+        </mat-button-toggle-group>
+      </section>
+
+      <!-- BOTONERA -->
+      <ul>
+        <li>
+          <a [class.disabled]="nPage - - 1 === 1" (click)="goToPrev()" href="#">
+            <mat-icon>arrow_back_ios</mat-icon></a>
+        </li>
+        <li *ngFor="let pag of arrBotonera">
+          @if(pag==='...'){
+          <a> {{ pag }}</a>
+          } @else {
+          <a href="#" (click)="goToPage(-(-pag))" [class.active]="nPage - -1 === -(-pag)">
+            {{ pag }}
+          </a>
+          }
+        </li>
+        <li>
+          <a [class.disabled]="nPage - -1 === oPage?.totalPages" (click)="goToNext()"
+            href="#"><mat-icon>arrow_forward_ios</mat-icon></a>
+        </li>
+      </ul>
+    </div>
+
+
+    <div>
+      <!-- Exportar -->
+      <button mat-mini-fab (click)="exportToPDF()">
+        <mat-icon>picture_as_pdf</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- TABLA -->
+  <table>
+    <thead>
+      <tr>
+        <th (click)="sort('id')">Id</th>
+        <th (click)="sort('nombre')">Nombre</th>
+        <th (click)="sort('descripcion')">Descripción</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (curso of oPage?.content; track curso.id) {
+      <tr>
+        <td>{{ curso.id }}</td>
+
+        <td>{{ curso.nombre }}</td>
+
+        <td>{{ curso.descripcion | trim : 70 }}</td>
+
+        <td>
+          <div class="buttons">
+            <button mat-mini-fab class="view-button" (click)="view(curso)">
+              <mat-icon>visibility</mat-icon>
+            </button>
+
+            <button mat-mini-fab class="edit-button" (click)="edit(curso)">
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-mini-fab class="delete-button" (click)="delete(curso)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </td>
+      </tr>
+      } @empty {
+      <tr>
+        <td colspan="6">No hay cursos</td>
+      </tr>
+      }
+    </tbody>
+
+  </table>
+</div>

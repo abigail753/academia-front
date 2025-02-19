@@ -1,0 +1,113 @@
+<nav>
+
+  <ul>
+    <!-- HOME -->
+    <li>
+      <a [class.active]="strRuta == '/home' || strRuta == '/' || strRuta == ''" aria-current="page"
+        href="/home"><mat-icon>home</mat-icon></a>
+    </li>
+
+    @if(activeSession){
+
+    @if(this.tipoUsuario == 'Administrador'){
+    <!-- USUARIOS -->
+    <li>
+      <a [class.active]="strRuta == '/admin/usuario/plist'" href="/admin/usuario/plist">Usuarios</a>
+    </li>
+
+    <!-- CURSOS -->
+    <li>
+      <a [class.active]="strRuta == '/admin/curso/plist'" href="/admin/curso/plist">Cursos</a>
+    </li>
+
+    <!-- EXAMENES -->
+    <li>
+      <a [class.active]="strRuta == '/admin/examen/plist'" href="/admin/examen/plist">Examenes</a>
+    </li>
+
+    <!-- INSCRIPCIONES -->
+    <li>
+      <a [class.active]="strRuta == '/admin/inscripcion/plist'" href="/admin/inscripcion/plist">Inscripciones</a>
+    </li>
+
+    <!-- TEMA -->
+    <li>
+      <a [class.active]="strRuta == '/admin/tema/plist'" href="/admin/tema/plist">Temas</a>
+    </li>
+
+    <!-- CALIFICACION -->
+    <li>
+      <a [class.active]="strRuta == '/admin/calificacion/plist'" href="/admin/calificacion/plist">Calificaciones</a>
+    </li>
+
+    <!-- LOGOUT -->
+    <span style="color:#fff;">{{ userEmail }}</span>
+    <li>
+      <a href="/logout">Cerrar Sesion</a>
+    </li>
+    }
+
+    @if (this.tipoUsuario === 'Profesor'){
+    <!-- USUARIOS -->
+    <li>
+      <a [class.active]="strRuta == '/profesor/usuario/plist'" href="/profesor/usuario/plist">Usuarios</a>
+    </li>
+
+    <!-- CURSOS -->
+    <li>
+      <a [class.active]="strRuta == '/profesor/curso/plist'" href="/profesor/curso/plist">Cursos</a>
+    </li>
+
+    <!-- TEMA -->
+    <li>
+      <a [class.active]="strRuta == '/admin/tema/plist'" href="/admin/tema/plist">Temas</a>
+    </li>
+
+    <!-- EXAMENES -->
+    <li>
+      <a [class.active]="strRuta == '/profesor/examen/plist'" href="/profesor/examen/plist">Examenes</a>
+    </li>
+
+    <!-- CALIFICACION -->
+    <li>
+      <a [class.active]="strRuta == '/profesor/calificacion/plist'"
+        href="/profesor/calificacion/plist">Calificaciones</a>
+    </li>
+
+    <!-- LOGOUT -->
+    <span style="color:#fff;">{{ userEmail }}</span>
+    <li>
+      <a href="/logout">Cerrar Sesion</a>
+    </li>
+    }
+
+    @if (this.tipoUsuario === 'Estudiante'){
+    <!-- CURSOS -->
+    <li>
+      <a [class.active]="strRuta == '/estudiante/curso/plist'" href="/estudiante/curso/plist">Mis cursos</a>
+    </li>
+
+    <li>
+      <a [class.active]="strRuta == '/estudiante/calificacion/plist'"
+        href="/estudiante/calificacion/plist">Mis calificaciones</a>
+    </li>
+
+    <!-- LOGOUT -->
+    <span style="color:#fff;">{{ userEmail }}</span>
+    <li>
+      <a href="/logout">Cerrar Sesion</a>
+    </li>
+    }
+
+    } @else {
+    <!-- NO LOGUEADO -->
+    <!-- LOGIN -->
+    <li>
+      <a [class.active]="strRuta == '/admin/calificacion/plist'" href="/login">Iniciar Sesion</a>
+    </li>
+    }
+
+
+  </ul>
+
+</nav>

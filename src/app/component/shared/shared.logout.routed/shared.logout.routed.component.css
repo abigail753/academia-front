@@ -1,0 +1,9 @@
+:host {
+    display: block;
+    background-image: url('../../../../../public/img/fondo-login.svg');
+    background-size: cover;
+    background-position: center;
+    height: 85vh;
+    display: flex;
+    align-items: center;
+}

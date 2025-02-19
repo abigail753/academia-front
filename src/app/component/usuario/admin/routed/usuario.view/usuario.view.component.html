@@ -1,0 +1,44 @@
+<div class="view">
+
+  <h2>Ver Usuario <mat-icon>search</mat-icon></h2>
+
+  <a (click)="plistCalificaciones(oUsuario)"> Ver calificaciones de usuario </a>
+
+  <mat-card class="example-card custom-card-bar" appearance="outlined">
+
+    <div class="card-header-bar">
+      <h3>ID del Usuario: {{ oUsuario.id }}</h3>
+    </div>
+
+    <mat-card-content>
+      @if ( oUsuario.foto != null){
+      <img mat-card-md-image src="{{ oUsuario.foto }}" alt="{{ oUsuario.id }}">
+      } @else {
+      <img mat-card-md-image
+        src="img/SinFoto.png">
+      }
+      <div>
+        <p><strong>Nombre:</strong> {{ oUsuario.nombre }}</p>
+        <p><strong>Apellidos:</strong> {{ oUsuario.apellidos }}</p>
+        <p><strong>Correo:</strong> {{ oUsuario.correo }}</p>
+        <p><strong>Tipo de usuario:</strong> {{ oUsuario.tipousuario }}</p>
+      </div>
+    </mat-card-content>
+
+  </mat-card>
+
+  <div class="buttons">
+    <button mat-fab extended class="plist-button" (click)="plist()">
+      <mat-icon>format_list_numbered</mat-icon>Ir a listado de usuarios
+    </button>
+
+    <button mat-fab extended class="edit-button" (click)="edit(oUsuario)">
+      <mat-icon>edit</mat-icon>Editar
+    </button>
+
+    <button mat-fab extended class="delete-button" (click)="delete(oUsuario)">
+      <mat-icon>delete</mat-icon>Borrar
+    </button>
+  </div>
+
+</div>

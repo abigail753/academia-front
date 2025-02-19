@@ -1,0 +1,74 @@
+.delete {
+  width: 60%;
+  padding: 20px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  h2 {
+    text-align: center;
+  }
+
+  img {
+    padding: 10px;
+    border-radius: 100%;
+    width: 30%;
+    height: auto;
+  }
+  
+  .custom-card-bar {
+    border: 1px solid #203f58;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-header-bar {
+    background-color: #215385c7;
+    color: white;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .custom-card-bar mat-card-content {
+    padding: 16px;
+    color: #0d2344;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  /* Botón Listar (Listado de Usuarios) */
+  .plist-button {
+    background-color: #4C6B8C;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+
+  .plist-button:hover {
+    background-color: #6d98c2;
+    transform: scale(1.05);
+    transition: transform 0.1s ease;
+  }
+
+  /* Botón Eliminar */
+  .delete-button {
+    background-color: #6e0000;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+
+  .delete-button:hover {
+    background-color: #b40000;
+    transform: scale(1.05);
+    transition: transform 0.1s ease;
+  }
+}

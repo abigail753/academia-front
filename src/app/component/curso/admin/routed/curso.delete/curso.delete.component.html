@@ -1,0 +1,44 @@
+<div class="delete">
+  <h2>Eliminar Curso <mat-icon>delete_forever</mat-icon></h2>
+
+  <mat-card class="example-card custom-card-bar" appearance="outlined">
+    <div class="card-header-bar">
+      <h3>ID del Curso: {{ oCurso?.id }}</h3>
+    </div>
+
+    <mat-card-content>
+      <p><strong>Nombre de Curso:</strong> {{ oCurso?.nombre }}</p>
+      <p><strong>Descripción:</strong> {{ oCurso?.descripcion }}</p>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="buttons">
+    <button mat-fab extended class="plist-button" (click)="plist()">
+      <mat-icon>format_list_numbered</mat-icon>Ir a listado de cursos
+    </button>
+
+    <button mat-fab extended class="delete-button" (click)="delete()">
+      <mat-icon>delete</mat-icon>Borrar
+    </button>
+  </div>
+
+  <div class="modal fade" [id]="'mimodal'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Contante</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            (click)="hideModal()"></button>
+        </div>
+        <div class="modal-body">
+          <p>{{ strMessage }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="hideModal()">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

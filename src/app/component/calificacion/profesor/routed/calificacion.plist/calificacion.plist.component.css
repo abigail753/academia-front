@@ -1,0 +1,184 @@
+:host {
+    display: block;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.plist {
+    width: 80%;
+    padding: 20px;
+
+    .title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+
+        h2 {
+            margin-bottom: 0;
+        }
+
+        .create-button {
+            height: 26px !important;
+            background-color: #00396e;
+            color: #fff;
+            transition: width 0.3s ease-in-out, padding 0.3s ease-in-out;
+            width: 56px;
+            overflow: hidden;
+            white-space: nowrap;
+            border-radius: 50px;
+        }
+
+        .create-button.extended {
+            gap: 5px;
+            width: 210px !important;
+        }
+    }
+
+    .filters {
+
+        h3 {
+            font-size: 1.30rem;
+            margin-bottom: 0;
+        }
+
+        mat-form-field {
+            height: 70px;
+            margin-top: 20px;
+        }
+
+    }
+
+    .pag {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+
+        div {
+            &:nth-child(2) {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                section {
+                    display: flex;
+                    justify-content: center;
+
+                    ::ng-deep .mat-button-toggle-checked {
+                        background-color: #0c47747c !important;
+                        font-weight: bold;
+                    }
+                }
+
+                ul {
+                    padding: 0;
+                    margin-bottom: 0;
+                    display: flex;
+                    justify-content: center;
+                    gap: 10px;
+                    list-style: none;
+
+                    li {
+                        padding: 5px;
+
+                        a {
+                            text-decoration: none;
+                            color: inherit;
+                            padding: 5px 13px;
+                        }
+
+                        a.active {
+                            background-color: #0c4774;
+                            border-radius: 50px;
+                            color: #ffffff;
+                            font-weight: bold;
+                        }
+
+                        a:hover {
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+
+            &:last-child {
+                display: flex;
+                gap: 20px;
+
+                button {
+                    background-color: transparent;
+                    color: #db0000
+                }
+            }
+        }
+    }
+
+    table {
+        width: 100%;
+        margin-top: 20px;
+        box-shadow: 0 4px 8px #18191a59;
+        border-radius: 8px;
+
+        thead tr th {
+            padding: 10px 10px;
+            border: 2px solid #00396e59;
+            text-align: center;
+            background-color: #00396e59;
+        }
+
+        tbody {
+            border: 2px solid #00396e59;
+
+            tr {
+                border-bottom: 2px solid #00396e59;
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                &:hover {
+                    cursor: context-menu;
+                    transform: scale(1.02);
+
+                    td {
+                        background-color: #e0ebf573;
+                        border: none;
+                    }
+                }
+
+                td {
+                    text-align: center;
+                    padding: 12px 20px;
+                    border-left: 2px solid #00396e59;
+
+                    &:first-child {
+                        border-left: none;
+                    }
+
+                    .buttons {
+                        display: flex;
+                        justify-content: center;
+                        gap: 20px;
+
+                        .view-button {
+                            background-color: #00586e;
+                            color: white;
+                        }
+
+                        .edit-button {
+                            background-color: #6e6700;
+                            color: white;
+                        }
+
+                        .delete-button {
+                            background-color: #6e0000;
+                            color: white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

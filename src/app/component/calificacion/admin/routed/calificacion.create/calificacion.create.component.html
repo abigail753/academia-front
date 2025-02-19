@@ -1,0 +1,117 @@
+<div class="create">
+  <h2>Crear una nueva calificacion <mat-icon>add_circle</mat-icon></h2>
+
+  <!-- Formulario -->
+  <form [formGroup]="oCalificacionForm!" (ngSubmit)="onSubmit()" novalidate>
+
+    <!-- Campo - Calificacion -->
+    <mat-form-field>
+      <mat-label>Calificación</mat-label>
+      <mat-icon matPrefix>equalizer</mat-icon>
+      <input matInput formControlName="calificacion" placeholder="Calificacion" />
+
+      @if (oCalificacionForm?.get('calificacion')?.hasError('required')){
+      <mat-error> El campo calificación es obligatorio </mat-error>
+      } @if (oCalificacionForm?.get('calificacion')?.hasError('pattern')){
+      <mat-error>
+        La calificación debe ser un número decimal 2 enteros max y 2 decimales max
+        y el punto como separador
+      </mat-error>
+      }@if (oCalificacionForm?.get('calificacion')?.hasError('min')){
+      <mat-error>
+        La calificación debe ser como mínimo un 0
+      </mat-error>
+      } @if (oCalificacionForm?.get('calificacion')?.hasError('max')){
+      <mat-error>
+        La calificación debe ser como máximo un 10
+      </mat-error>
+      }
+    </mat-form-field>
+
+    <!-- Campo - Fecha de Evaluacion -->
+    <mat-form-field>
+      <mat-label>Fecha de evaluación</mat-label>
+      <mat-icon matPrefix>calendar_month</mat-icon>
+      <input matInput [matDatepicker]="picker" formControlName="fecha_evaluacion" placeholder="Selecciona la fecha"
+        required />
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+
+      
+    </mat-form-field>
+
+    <!-- Campo - Id de Usuario -->
+    <mat-form-field formGroupName="usuario">
+      <mat-label>Nombre del Usuario</mat-label>
+      <mat-icon matPrefix>format_list_numbered</mat-icon>
+
+      <!-- Usamos formGroupName="usuario" y formControlName="id" -->
+      <input matInput formControlName="nombre" placeholder="ID de usuario" />
+
+      <button mat-icon-button matSuffix (click)="openDialogUsuario()">
+        <mat-icon>manage_search</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <!-- Campo - ID de Examen -->
+    <mat-form-field formGroupName="examen">
+      <mat-label>Nombre del Examen</mat-label>
+      <mat-icon matPrefix>format_list_numbered</mat-icon>
+
+      <!-- Usamos formGroupName="examen" y formControlName="id" -->
+      <input matInput formControlName="nombre" placeholder="ID de examen" />
+
+      <button mat-icon-button matSuffix (click)="openDialogExamen()">
+        <mat-icon>manage_search</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <!-- Campo - ID de Tema -->
+    <mat-form-field formGroupName="tema">
+      <mat-label>Nombre del Tema</mat-label>
+      <mat-icon matPrefix>format_list_numbered</mat-icon>
+
+      <!-- Usamos formGroupName="examen" y formControlName="id" -->
+      <input matInput formControlName="titulo" placeholder="ID de tema" />
+
+      <button mat-icon-button matSuffix (click)="openDialogTema()">
+        <mat-icon>manage_search</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <div class="buttons">
+      <button mat-fab extended class="plist-button" [routerLink]="['/admin', 'calificacion', 'plist']">
+        <mat-icon>format_list_numbered</mat-icon>Ir a listado de calificacions
+      </button>
+
+      <button mat-fab extended class="reset-button" (click)="onReset()">
+        <mat-icon>refresh</mat-icon>Limpiar campos
+      </button>
+
+      <button mat-fab extended class="save-button" type="submit" [disabled]="!oCalificacionForm?.valid">
+        <mat-icon>save</mat-icon>Guardar
+      </button>
+    </div>
+  </form>
+
+  <!-- Modal -->
+  <div class="modal fade" [id]="'mimodal'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Contante</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            (click)="hideModal()"></button>
+        </div>
+        <div class="modal-body">
+          <p>{{ strMessage }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="hideModal()">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

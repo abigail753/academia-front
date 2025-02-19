@@ -1,0 +1,143 @@
+<div class="plist">
+  <div class="title">
+    <h2>Lista de Usuarios <mat-icon>groups</mat-icon></h2>
+
+    <!-- BOTÓN CREAR -->
+    <button class="create-button" mat-fab [class.mat-fab]="!hover" [class.mat-flat-button]="hover"
+      [class.extended]="hover" (mouseenter)="hover = true" (mouseleave)="hover = false" (click)="create()">
+      <mat-icon>add_circle</mat-icon>
+      <span *ngIf="hover">Crear nuevo usuario</span>
+    </button>
+  </div>
+
+  <hr>
+  <div class="filters">
+    <h3>Filtrar</h3>
+    <div>
+      <!-- FILTRO -->
+      <mat-form-field>
+        <mat-label>Por tipo de usuario</mat-label>
+        <mat-select [(ngModel)]="strFiltro" (selectionChange)="filterSelect($event)"
+          [value]="strSearch ? null : strFiltro">
+          <mat-option [value]="'Administrador'">Administrador</mat-option>
+          <mat-option [value]="'Profesor'">Profesor</mat-option>
+          <mat-option [value]="'Estudiante'">Estudiante</mat-option>
+          <mat-option [value]="''">Sin filtrar</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- BUSCADOR -->
+      <mat-form-field appearance="fill">
+        <mat-label>Buscar</mat-label>
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput [(ngModel)]="strSearch" (ngModelChange)="filter($event)" placeholder="Buscar">
+      </mat-form-field>
+    </div>
+  </div>
+  <hr>
+
+  <div class="pag">
+    <!-- FILTROS -->
+    <h5>
+      Mostrando {{ oPage?.numberOfElements | number : "1.0-0" }} de
+      {{ oPage?.totalElements | number : "1.0-0" }}
+    </h5>
+
+    <div>
+      <!-- BOTONERA x Numero de datos -->
+      <section>
+        <mat-button-toggle-group [value]="'10'">
+          <mat-button-toggle value="10" (click)="goToRpp(10)">10</mat-button-toggle>
+          <mat-button-toggle value="50" (click)="goToRpp(50)">50</mat-button-toggle>
+          <mat-button-toggle value="100" (click)="goToRpp(100)">100</mat-button-toggle>
+        </mat-button-toggle-group>
+      </section>
+
+      <!-- BOTONERA -->
+      <ul>
+        <li>
+          <a [class.disabled]="nPage - - 1 === 1" (click)="goToPrev()" href="#">
+            <mat-icon>arrow_back_ios</mat-icon></a>
+        </li>
+        <li *ngFor="let pag of arrBotonera">
+          @if(pag==='...'){
+          <a> {{ pag }}</a>
+          } @else {
+          <a href="#" (click)="goToPage(-(-pag))" [class.active]="nPage - -1 === -(-pag)">
+            {{ pag }}
+          </a>
+          }
+        </li>
+        <li>
+          <a [class.disabled]="nPage - -1 === oPage?.totalPages" (click)="goToNext()"
+            href="#"><mat-icon>arrow_forward_ios</mat-icon></a>
+        </li>
+      </ul>
+    </div>
+
+
+    <div>
+      <!-- Exportar -->
+      <button mat-mini-fab (click)="exportToPDF()">
+        <mat-icon>picture_as_pdf</mat-icon>
+      </button>
+
+      <!-- MOSTRAR TABLAS X CARD -->
+      <button mat-mini-fab (click)="plistCard()">
+        <mat-icon>apps</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- TABLA -->
+  <table>
+    <thead>
+      <tr>
+        <th (click)="sort('id')">Id</th>
+        <th (click)="sort('nombre')">Nombre</th>
+        <th (click)="sort('apellidos')">Apellidos</th>
+        <th (click)="sort('correo')">Correo</th>
+        <th (click)="sort('tipousuario')">Tipo de usuario</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (usuario of oPage?.content; track usuario.id) {
+      <tr>
+        <td>{{ usuario.id }}</td>
+
+        <td>{{ usuario.nombre}}</td>
+
+        <td>{{ usuario.apellidos | trim : 10 }}</td>
+
+        <td>{{ usuario.correo }}</td>
+
+        <td>{{ usuario.tipousuario }}</td>
+
+        <td>
+          <div class="buttons">
+            <button mat-mini-fab class="view-button" (click)="view(usuario)">
+              <mat-icon>visibility</mat-icon>
+            </button>
+
+            <button mat-mini-fab class="edit-button" (click)="edit(usuario)">
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-mini-fab class="delete-button" (click)="delete(usuario)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </td>
+      </tr>
+      } @empty {
+      <tr>
+        <td colspan="6">No hay usuarios</td>
+      </tr>
+      }
+    </tbody>
+
+  </table>
+
+</div>
